@@ -56,13 +56,13 @@ function App() {
       currentWord += board[currentAttempt.attempt][i]
     };
 
-    if (wordSet.has(currentWord.toLocaleLowerCase())) {
+    if (wordSet.has(currentWord.toLowerCase())) {
       setCurrentAttempt({ attempt: currentAttempt.attempt + 1, letterPos: 0 });
     } else {
       alert('Word not found!')
     };
 
-    if (currentWord === correctWord) {
+    if (currentWord.toLowerCase() === correctWord) {
       setGameOver({gameOver: true, guessedWord: true})
       return;
     };
