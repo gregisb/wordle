@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import "./styles.css";
 import { AppContext } from "../../App";
 
 function Letter({ letterPos, attemptVal }) {
