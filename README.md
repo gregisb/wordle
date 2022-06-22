@@ -10,9 +10,10 @@ You need to guess the word in six tries:
 - After each guess, the color of the tiles will change to show how close your guess was to the word.
 
 ### Examples:
-- The tile will be GREEN if the letter is in the word and in the correct spot.
-- The tile will be YELLOW if the letter is in the word but in the wrong spot.
-- The tile will be GRAY if the letter is not in the word in any spot.
+
+- The tile will be <span style="color: #528d4e;">GREEN</span> if the letter is in the word and in the correct spot.
+- The tile will be <span style="color: #b49f39;">YELLOW</span> if the letter is in the word but in the wrong spot.
+- The tile will be <span style="color: #3a393c;">GRAY</span> if the letter is not in the word in any spot.
 
 Developed using ReactJS. It was a challenging project because of the logical complexity to set up the board, the keyboard, and check it against the word selected by the program.
 
