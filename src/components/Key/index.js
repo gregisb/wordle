@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
+import './styles.css';
 
 function Key({ keyVal, bigKey, disabled }) {
   const { gameOver, onSelectLetter, onDelete, onEnter } =
