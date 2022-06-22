@@ -1,0 +1,9 @@
+.footer {
+    margin-top: 60px;
+    color: gray;
+}
+
+a {
+    color: rgb(85, 85, 85);
+    text-decoration: none; /* no underline */
+  }

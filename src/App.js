@@ -1,6 +1,7 @@
 import "./App.css";
 import Board from "./components/Board";
 import Keyboard from "./components/Keyboard";
+import Footer from './components/Footer';
 import { boardDefault, generateWordSet } from "./Words";
 import React, { useState, createContext, useEffect } from "react";
 import GameOver from "./components/GameOver";
@@ -94,6 +95,7 @@ function App() {
           {gameOver.gameOver ? <GameOver /> : <Keyboard />}
         </div>
       </AppContext.Provider>
+      <Footer />
     </div>
   );
 }
