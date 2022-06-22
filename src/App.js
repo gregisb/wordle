@@ -23,7 +23,9 @@ function App() {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
       setCorrectWord(words.todaysWord);
-      console.log(words.todaysWord)
+      // console.log(`Hey, there! Thanks for comming here! If you just want to test the app and it is not your time for having fun, here is the correct word of this run: %c${words.todaysWord}, "color:red"`)
+      console.log('%c Hey, there! Thanks for comming here! If you just want to test the app and it is not your time for having fun, here is the correct word of this run: ', 'background: #222; color: #bada55');
+      console.log(`%c${words.todaysWord}`, 'background: #222; color: #fff')
     });
   }, []);
 
