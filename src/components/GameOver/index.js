@@ -3,13 +3,10 @@ import { AppContext } from "../../App";
 
 function GameOver() {
   const {
-    board,
-    setBoard,
+    
     currAttempt,
     gameOver,
-    onSelectLetter,
     correctWord,
-    onDelete,
   } = useContext(AppContext);
   return (
     <div className="gameOver">
