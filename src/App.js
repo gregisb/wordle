@@ -1,77 +1,74 @@
-import { useState, createContext, useEffect } from "react";
 import "./App.css";
 import Board from "./components/Board";
-import GameOver from "./components/GameOver";
 import Keyboard from "./components/Keyboard";
 import { boardDefault, generateWordSet } from "./Words";
+import React, { useState, createContext, useEffect } from "react";
+import GameOver from "./components/GameOver";
 
 export const AppContext = createContext();
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
-  const [currentAttempt, setCurrentAttempt] = useState({
-    attempt: 0,
-    letterPos: 0,
-  });
+  const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
   const [wordSet, setWordSet] = useState(new Set());
-  const [disabledLetters, setDisabledLetters] = useState([]);
-  const [gameOver, setGameOver] = useState({gameOver: false, guessedWord: false});
   const [correctWord, setCorrectWord] = useState("");
+  const [disabledLetters, setDisabledLetters] = useState([]);
+  const [gameOver, setGameOver] = useState({
+    gameOver: false,
+    guessedWord: false,
+  });
 
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
       setCorrectWord(words.todaysWord);
       console.log(words.todaysWord)
-    })
-  }, [])
-
-  const onSelectLetter = (keyValue) => {
-    if (currentAttempt.letterPos > 4) return;
-    const newBoard = [...board];
-    newBoard[currentAttempt.attempt][currentAttempt.letterPos] = keyValue;
-    setBoard(newBoard);
-    setCurrentAttempt({
-      ...currentAttempt,
-      letterPos: currentAttempt.letterPos + 1,
     });
+  }, []);
+
+  const onEnter = () => {
+    if (currAttempt.letter !== 5) return;
+
+    let currWord = "";
+    for (let i = 0; i < 5; i++) {
+      currWord += board[currAttempt.attempt][i];
+    }
+    if (wordSet.has(currWord.toLowerCase())) {
+      setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
+    } else {
+      alert("Word not found");
+    }
+
+    if (currWord.toLowerCase() === correctWord) {
+      setGameOver({ gameOver: true, guessedWord: true });
+      return;
+    }
+
+    if (currAttempt.attempt === 5) {
+      setGameOver({ gameOver: true, guessedWord: false });
+      return;
+    }
   };
 
   const onDelete = () => {
-    if (currentAttempt.letterPos === 0) return;
+    if (currAttempt.letter === 0) return;
     const newBoard = [...board];
-    newBoard[currentAttempt.attempt][currentAttempt.letterPos - 1] = "";
+    newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
     setBoard(newBoard);
-    setCurrentAttempt({
-      ...currentAttempt,
-      letterPos: currentAttempt.letterPos - 1,
+    setCurrAttempt({ ...currAttempt, letter: currAttempt.letter - 1 });
+  };
+
+  const onSelectLetter = (key) => {
+    if (currAttempt.letter > 4) return;
+    const newBoard = [...board];
+    newBoard[currAttempt.attempt][currAttempt.letter] = key;
+    setBoard(newBoard);
+    setCurrAttempt({
+      attempt: currAttempt.attempt,
+      letter: currAttempt.letter + 1,
     });
   };
 
-  const onEnter = () => {
-    if (currentAttempt.letterPos !== 5) return;
-
-    let currentWord = "";
-    for (let i = 0; i < 5; i++) {
-      currentWord += board[currentAttempt.attempt][i]
-    };
-
-    if (wordSet.has(currentWord.toLowerCase())) {
-      setCurrentAttempt({ attempt: currentAttempt.attempt + 1, letterPos: 0 });
-    } else {
-      alert('Word not found!')
-    };
-
-    if (currentWord.toLowerCase() === correctWord) {
-      setGameOver({gameOver: true, guessedWord: true})
-      return;
-    };
-
-    if (currentAttempt.attempt === 5) {
-      setGameOver({gameOver: true, guessedWord: false})
-    }
-
-  };
   return (
     <div className="App">
       <nav>
@@ -81,16 +78,15 @@ function App() {
         value={{
           board,
           setBoard,
-          currentAttempt,
-          setCurrentAttempt,
+          currAttempt,
+          setCurrAttempt,
+          correctWord,
           onSelectLetter,
           onDelete,
           onEnter,
-          correctWord,
-          disabledLetters,
           setDisabledLetters,
+          disabledLetters,
           gameOver,
-          setGameOver
         }}
       >
         <div className="game">
