@@ -1,7 +1,7 @@
 .keyboard {
     width: 700px;
     height: 300px;
-    margin-top: 80px;
+    margin-top: 40px;
     background-color: #f4f4f4;  
 }
   
@@ -27,3 +27,15 @@
     justify-content: center;
     margin: 5px;
   }
+
+  @media (max-width: 624px) {
+    .keyboard {
+      width: 480px;
+  }
+}
+  
+  @media (max-width: 378px) {
+    .keyboard {
+      width: 280px; 
+  }
+}
