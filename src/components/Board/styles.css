@@ -1,7 +1,7 @@
 .board {
     width: 450px;
     height: 550px;
-    border: 1px solid black;
+    border: 1px solid white;
     display: flex;
     flex-direction: column;
   }
@@ -12,3 +12,15 @@
     flex-direction: row;
     margin: 5px;
   }
+
+@media (max-width: 620px) {
+  .board {
+    width: 350px;
+  }
+}
+
+@media (max-width: 378px) {
+  .board {
+    width: 250px;
+  }
+}

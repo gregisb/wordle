@@ -7,16 +7,18 @@
     place-items: center;
     font-size: 30px;
     font-weight: bolder;
-    color: white;
+    color: #7c7c7c;
     font-family: Arial, Helvetica, sans-serif;
   }
   
   #correct {
     background-color: #528d4e;
+    color: white
   }
   
   #almost {
     background-color: #b49f39;
+    color: rgb(233, 233, 233);
   }
   
   #error {
