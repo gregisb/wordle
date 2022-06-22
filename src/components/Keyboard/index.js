@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useContext } from "react";
 import Key from "../Key";
+import "./styles.css"
 import { AppContext } from "../../App";
 
 function Keyboard() {
